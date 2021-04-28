@@ -7,13 +7,13 @@ Each method will be generally be explored using 3 steps:
 3. A small project involving an application of the method to an interesting problem.
 
 This is a work in progress, but some of the methods I intend to explore are:  
--Newton's Method  
--Least Squares  
--Jacobi and Gauss-Seidel Iterations  
--Runge-Kutta Integration Methods  
--Euler's Method  
--Finite Difference Methods  
--Markov Chains  
--FFT  
--LU and QR Matrix Decomposition  
--Singular Value Decomposition  
+  -Newton's Method  
+  -Least Squares  
+  -Jacobi and Gauss-Seidel Iterations  
+  -Runge-Kutta Integration Methods  
+  -Euler's Method  
+  -Finite Difference Methods  
+  -Markov Chains  
+  -FFT  
+  -LU and QR Matrix Decomposition  
+  -Singular Value Decomposition  
