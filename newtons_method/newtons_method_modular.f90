@@ -1,20 +1,23 @@
 module newtonsMethod
+use, intrinsic :: iso_fortran_env
 implicit none
-
 !perform newton's method to find the root of a given function
-integer :: maxIter = 50
-real, parameter :: tolerance = 1E-12
+
+integer, parameter :: dp = real64
 
 contains
 
-subroutine findRoot(func, df, guess, iterations, root)
+subroutine findRoot(func, df, guess, iterations, root, maxIter, tolerance)
 implicit none
 
-double precision, intent(in) :: guess
+real(dp), intent(in) :: guess
 integer, intent(out) :: iterations
-double precision, external :: func, df
-double precision, intent(out) :: root
-double precision :: f, deriv, temp
+integer, intent(in) :: maxIter
+real(dp), external :: func, df
+real(dp), intent(out) :: root
+real(dp), parameter, intent(in) :: tolerance
+
+real(dp) :: f, deriv, temp
 integer :: i
 
 temp = guess !root for prior iteration
