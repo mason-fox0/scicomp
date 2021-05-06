@@ -1,6 +1,7 @@
 program newtonTest
+!requires newton_functions.f90, newtons_method_modular.f90
 use functions
-use newtonsMethod
+use newtonsMethod 
 use, intrinsic :: iso_fortran_env
 
 integer, parameter :: dp = real64
@@ -11,7 +12,7 @@ real(dp), dimension(3) :: actual
 real :: error
 
 !hardcoded based on wolfram alpha results, used for error calc
-actual(1) = acosh(5.0)
+actual(1) = dacosh(5.0_dp)
 actual(2) = 0.0
 actual(3) = 2.4048255576957727686216319_dp
 
@@ -21,7 +22,7 @@ write(*,*) "After ", iter, "iterations, the root of func1 is: ", x_root
 write(*,*) "Actual: ", actual(1), " Error: ", error
 write(*,*)
 
-call findRoot(f2, df2, initial, iter, x_root, maxIter, tolerance) !expected to fail, root = 0
+call findRoot(f2, df2, initial, iter, x_root, maxIter, tolerance) !expected to fail, oscillates about zero and diverges
 error = (actual(2) - x_root) / actual(2) 
 write(*,*) "After ", iter, "iterations, the root of func2 is: ", x_root
 write(*,*) "Actual: ", actual(2),  " Error: ", error
