@@ -1,5 +1,5 @@
 module functions
-!provides function list for use with newtons_method
+!provides function list for use with newton's method subroutine
 use, intrinsic :: iso_fortran_env
 implicit none
 
