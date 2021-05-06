@@ -3,7 +3,7 @@ use, intrinsic :: iso_fortran_env
 implicit none
 !perform newton's method to find the root of a given function
 
-integer, parameter :: dp = real64
+integer, parameter, private :: dp = real64
 
 contains
 
@@ -15,7 +15,7 @@ integer, intent(out) :: iterations
 integer, intent(in) :: maxIter
 real(dp), external :: func, df
 real(dp), intent(out) :: root
-real(dp), parameter, intent(in) :: tolerance
+real(dp), intent(in) :: tolerance
 
 real(dp) :: f, deriv, temp
 integer :: i
