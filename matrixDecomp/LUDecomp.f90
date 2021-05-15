@@ -1,7 +1,7 @@
 module LUDecomp
 !performs LU Decomposition via gaussian elimination with partial pivoting
 use, intrinsic :: iso_fortran_env
-sp = real_32
+integer :: sp = real_32
 
 contains
 
@@ -14,7 +14,6 @@ integer, intent(in) :: numCols, numRows
 integer :: i, j, k largest, pivotRow
 real(sp), allocatable, dimension(:,:) :: elimMatrix
 
-allocate(matrix(numRows, numCols))
 allocate(elimMatrix(numRows, numCols))
 
 do i = 1, numCols-1
@@ -39,6 +38,8 @@ do i = 1, numCols-1
         end do
 end do
 
+deallocate(elimMatrix)
+
 end subroutine gaussElim
 
 
@@ -53,6 +54,8 @@ allocate(temp(size(matrix, 2)) !allocate number of columns in matrix (length of 
 temp = matrix(row2,:)
 matrix(row2,:) = matrix(row1,:)
 matrix(row1,:) = temp
+
+deallocate(temp)
 
 end subroutine rowSwitch
 
