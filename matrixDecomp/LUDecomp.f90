@@ -1,5 +1,5 @@
-module gaussElimination
-!performs gaussian elimination with pivoting
+module LUDecomp
+!performs LU Decomposition via gaussian elimination with partial pivoting
 use, intrinsic :: iso_fortran_env
 sp = real_32
 
@@ -11,15 +11,32 @@ implicit none
 
 real(sp), allocatable, dimension(:,:) :: matrix
 integer, intent(in) :: numCols, numRows
-integer :: i, largest, pivotRow
+integer :: i, j, k largest, pivotRow
+real(sp), allocatable, dimension(:,:) :: elimMatrix
 
 allocate(matrix(numRows, numCols))
+allocate(elimMatrix(numRows, numCols))
 
-do i = 1, numCols
+do i = 1, numCols-1
         pivotRow = largestInCol(matrix, numCols, numRows, i)
-        rowSwitch(matrix, i, pivotRow)
+        
+        if (pivotRow .ne. i) then
+                rowSwitch(matrix, i, pivotRow)
+        end if
 
-        !Todo: Perform Gaussian Elimination
+        if (matrix(i,i) = 0) then
+                cycle
+        end if
+
+        do j = i + 1, numCols
+                elimMatrix(j,i) = matrix(j,i) / matrix(i,i)
+        end do        
+
+        do k = i + 1, numCols
+                do j = i + 1, numCols
+                        matrix(j,k) = matrix(j,k) - elimMatrix(j,i) * matrix(i,k)
+                end do 
+        end do
 end do
 
 end subroutine gaussElim
@@ -57,4 +74,4 @@ do i = 1, numRows
 end do
 
 end function largestInCol
-end module gaussElimination
+end module LUDecomp
