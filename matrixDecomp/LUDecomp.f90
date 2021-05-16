@@ -11,7 +11,7 @@ implicit none
 
 real(sp), allocatable, dimension(:,:) :: matrix
 integer, intent(in) :: numCols, numRows
-integer :: i, j, k largest, pivotRow
+integer :: i, j, k, largest, pivotRow
 real(sp), allocatable, dimension(:,:) :: elimMatrix
 
 allocate(elimMatrix(numRows, numCols))
@@ -63,6 +63,7 @@ end subroutine rowSwitch
 integer function largestInCol(matrix, numCols, numRows, colCheck) result(rowIndex)
 implicit none
 
+integer, dimension(:,:), intent(in) :: matrix
 integer, intent(in) :: numCols, numRows, colCheck
 integer :: i
 real(sp) :: largest = 0.0
